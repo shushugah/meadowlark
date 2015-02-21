@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 
 //this is an html templating engine
+//main, refers to views/layouts/main.handlebars as default html template.
 var handlebars = require("express-handlebars")
 	.create({defaultLayout:"main"});
 
