@@ -14,27 +14,25 @@ app.set("port", process.env.PORT || 3000);
 
 // get method, defines routes for us, in this case: "/"
 app.get("/", function(req, res){
-	res.type("text/plain");
 	//res.status defaults to 200, not needed :)
-	res.send("Meadow Lark Travel");
+	res.render("home");
 });
 
 app.get("/about", function(req, res){
-	res.type("text/plain");
-	res.send("About Meadow Lark Travel");
+	res.render("about");
 });
 
 //404 page, for when invalid resource requested.
 app.use(function(req,res){
-	res.type("text/plain");
 	res.status(404);
-	res.send('404 - Not Found');
+	res.render('404');
 });
 
-app.use(function(req,res,next){
-	res.type("text/plain");
+app.use(function(err, req,res,next){
+	console.error(err.stack);
 	res.status(500);
-	res.send("server error");
+	res.render("505");
+	
 });
 
 app.listen(app.get("port"), function(){
