@@ -9,6 +9,9 @@ app.use(express.static(__dirname+"/public"));
 var handlebars = require("express-handlebars")
 	.create({defaultLayout:"main"});
 
+var motivations = ["You're awesome", "We love you!", "Buy me food!", "Yay!"
+];
+
 app.engine("handlebars", handlebars.engine);	
 
 app.set("view engine", "handlebars");
@@ -22,7 +25,12 @@ app.get("/", function(req, res){
 });
 
 app.get("/about", function(req, res){
-	res.render("about");
+	//takes integer value from range of 0-[array.length-1],for random index
+	var randomquotes =
+		motivations[Math.floor(Math.random()*(motivations.length))];
+	//since we render quote here in brackets, in view page, only use two brackets, instead of three
+	//yay dynamic rendering!
+	res.render("about",{quote: randomquotes});
 });
 
 //404 page, for when invalid resource requested.
