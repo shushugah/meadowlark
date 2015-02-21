@@ -1,6 +1,9 @@
 var express = require("express");
 var app = express();
 
+//static middleware -makes public directory and its files' static resources availavle
+app.use(express.static(__dirname+"/public"));
+
 //this is an html templating engine
 //main, refers to views/layouts/main.handlebars as default html template.
 var handlebars = require("express-handlebars")
